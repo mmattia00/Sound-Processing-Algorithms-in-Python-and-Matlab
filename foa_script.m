@@ -1,5 +1,9 @@
+clearvars
+close all
+clc
+
 % loading the audio files (all mono)
-path = "phone_ringing_test_3";
+path = "sounds/phone_ringing_test_6";
 [ch_1, ~] = audioread(path + "/FLU.wav");
 [ch_2, ~] = audioread(path + "/FRD.wav");
 [ch_3, ~] = audioread(path + "/BLD.wav");
@@ -7,14 +11,13 @@ path = "phone_ringing_test_3";
 
 
 % defining Direction Of Arrival (DOA)
-%sourcePos = [-0.567092, 1.540031, -0.777554]; %test 1
-%sourcePos = [0.787807, 1.533283, -0.867458]; %test 2
-%sourcePos = [0.785599, 1.548480, 0.933949]; %test 3
-sourcePos = [1.156678, 1.547312, 1.188559]; %test 3'
-%sourcePos = [-0.787221, 1.561335, 1.016164]; %test 4
-%sourcePos = [1.330709, 1.535722, -0.044023]; %test 5
-%sourcePos = [0.063359, 1.532059, -1.337881]; %test 6
-micPos = [0.024946, 1.434991, 0.023666];
+% sourcePos = [-0.972679, 1.529134, -0.990500]; %test 1
+% sourcePos = [0.995391, 1.521973, -0.984539]; %test 2
+%sourcePos = [1.030507, 1.536481, 0.964076]; %test 3
+%sourcePos = [-0.960028, 1.550499, 0.989871]; %test 4
+% sourcePos = [1.001858, 1.526383, -0.000256]; %test 5
+sourcePos = [0.016414, 1.545650, 0.992682]; %test 6
+micPos = [0.022120, 1.427708, 0.007946];
 DOA_track_ref_system = compute_doa(sourcePos, micPos);
 
 % transform the DOA in reference system of the mic
@@ -138,37 +141,37 @@ title('Heatmap of Power Across Configurations and Channels');
 time = (0:length(ch_1)-1) / fs;  % time vector based on sampling frequency
 
 % Calculate the power for each channel in the time domain (squared signal)
-power_ch1_time = ch_1.^2;
-power_ch2_time = ch_2.^2;
-power_ch3_time = ch_3.^2;
-power_ch4_time = ch_4.^2;
-
-% Plot time-domain power for each channel
-figure;
-
-subplot(2, 2, 1); % Create a subplot for each channel
-plot(time, power_ch1_time);
-title('Time-Domain Power of ch_1');
-xlabel('Time (s)');
-ylabel('Power');
-
-subplot(2, 2, 2);
-plot(time, power_ch2_time);
-title('Time-Domain Power of ch_2');
-xlabel('Time (s)');
-ylabel('Power');
-
-subplot(2, 2, 3);
-plot(time, power_ch3_time);
-title('Time-Domain Power of ch_3');
-xlabel('Time (s)');
-ylabel('Power');
-
-subplot(2, 2, 4);
-plot(time, power_ch4_time);
-title('Time-Domain Power of ch_4');
-xlabel('Time (s)');
-ylabel('Power');
-
-sgtitle('Time-Domain Power of Each Channel'); % Title for the entire figure
+% power_ch1_time = ch_1.^2;
+% power_ch2_time = ch_2.^2;
+% power_ch3_time = ch_3.^2;
+% power_ch4_time = ch_4.^2;
+% 
+% % Plot time-domain power for each channel
+% figure;
+% 
+% subplot(2, 2, 1); % Create a subplot for each channel
+% plot(time, power_ch1_time);
+% title('Time-Domain Power of ch_1');
+% xlabel('Time (s)');
+% ylabel('Power');
+% 
+% subplot(2, 2, 2);
+% plot(time, power_ch2_time);
+% title('Time-Domain Power of ch_2');
+% xlabel('Time (s)');
+% ylabel('Power');
+% 
+% subplot(2, 2, 3);
+% plot(time, power_ch3_time);
+% title('Time-Domain Power of ch_3');
+% xlabel('Time (s)');
+% ylabel('Power');
+% 
+% subplot(2, 2, 4);
+% plot(time, power_ch4_time);
+% title('Time-Domain Power of ch_4');
+% xlabel('Time (s)');
+% ylabel('Power');
+% 
+% sgtitle('Time-Domain Power of Each Channel'); % Title for the entire figure
 
