@@ -1,10 +1,6 @@
-function [doa_vector] = compute_doa(source_pos, mic_pos)
-    % Compute the vector from the microphone to the source
-    v = source_pos - mic_pos;
-
-    % Normalize the vector to obtain the unit DOA vector
-    doa_vector = v / norm(v);
-
-    % Optional: print the results
-    fprintf('DOA vector: [%.4f, %.4f, %.4f]\n', doa_vector);
+function doa_vector = compute_doa(source_pos, mic_pos)
+% Compute the unit Direction Of Arrival (DOA) vector from mic to source
+    vec = source_pos - mic_pos;
+    doa_vector = vec / norm(vec);
+    fprintf('DOA vector (tracking reference system): [%.4f, %.4f, %.4f]\n', doa_vector);
 end
