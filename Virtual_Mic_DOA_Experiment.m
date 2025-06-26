@@ -10,13 +10,14 @@ basePath = "sounds/phone_ringing_test_3";
 [ch_4, fs]  = audioread(fullfile(basePath, "BRU.wav"));
 
 % === Define source and microphone positions (example test case) ===
-% sourcePos = [-0.972679, 1.529134, -0.990500]; %test 1 -> Source coordinates in tracking reference frame
-% sourcePos = [0.995391, 1.521973, -0.984539]; %test 2
-sourcePos = [1.030507, 1.536481, 0.964076]; %test 3
-% sourcePos = [-0.960028, 1.550499, 0.989871]; %test 4
-% sourcePos = [1.001858, 1.526383, -0.000256]; %test 5
-% sourcePos = [0.016414, 1.545650, 0.992682]; %test 6
-micPos = [0.022120, 1.427708, 0.007946]; % Mic coordinates in tracking reference frame
+% Source coordinates in tracking reference frame
+% sourcePos = [-2.114, 1.454, 0.538]; %test 1: back-left 
+% sourcePos = [-0.123, 1.528, 0.478]; %test 2: front-left
+sourcePos = [-0.195, 1.523, -1.523]; %test 3: front-right
+% sourcePos = [-2.159, 1.447, -1.415]; %test 4: back-right
+% sourcePos = [-0.136, 1.525, -0.526]; %test 5: front
+% sourcePos = [-1.174, 1.4801, -1.496]; %test 6: right
+micPos = [-1.228, 1.380, -0.469]; % Mic coordinates in tracking reference frame
 
 % Compute Direction of Arrival (DOA) vector in tracking system
 DOA_track_ref = compute_doa(sourcePos, micPos);
@@ -24,7 +25,7 @@ DOA_track_ref = compute_doa(sourcePos, micPos);
 % Transform DOA vector from tracking ref. system to mic ref. system
 M_rot = [1, 0, 0;
          0, 0, 1;
-         0, -1, 0];
+         0, 1, 0];
 DOA = DOA_track_ref * M_rot;
 fprintf('DOA vector (mic reference system): [%.4f, %.4f, %.4f]\n', DOA);
 
