@@ -7,13 +7,13 @@ test_number = 1;
 test_string_positions = ["back-left", "front-left", "front-right", "back-right", "front", "right"];
 
 % === Marker dei 4 loudspeaker === (cambiando il segno alla z)
-P1 = [-0.0109, 0.5728, 2.2335]; P2 = [0.1456, 0.0255, 2.3808];
-P3 = [1.9679, 0.5393, 0.2116];  P4 = [1.8913, 0.6812, 0.0152];
-P5 = [0.0903, 0.4615, -1.8411];  P6 = [-0.1054, 0.6097, -1.7638];
-P7 = [-2.1668, 0.3907, -0.1953]; P8 = [-2.0969, 0.5158, 0.0108];
+P1 = [-1.2590, 0.4258, 0.9908]; P2 = [-1.2287, 0.5271, 1.2168];
+P3 = [1.0422, 0.5036, 1.2931];  P4 = [1.1115, 0.6506, 1.0976];
+P5 = [1.2900, 0.5070, -1.1268];  P6 = [1.0973, 0.6557, -1.2089];
+P7 = [-1.1184, 0.4381, -1.3248]; P8 = [-1.2103, 0.5532, -1.1232];
 
 % === Caricamento segnali audio mono da capsule cardioidi ===
-basePath = sprintf("sounds/playback_experiment/phone_ringing/test_%d", test_number);
+basePath = sprintf("sounds/playback_experiment/speech/test_%d", test_number);
 [ch_FLU, ~] = audioread(fullfile(basePath, "FLU.wav"));  % Front Left Up
 [ch_FRD, ~] = audioread(fullfile(basePath, "FRD.wav"));  % Front Right Down
 [ch_BLD, ~] = audioread(fullfile(basePath, "BLD.wav"));  % Back Left Down
@@ -26,6 +26,13 @@ T_encode = (1/2)*sqrt(3)*[1,  1,  1,  1;
                           1, -1, -1,  1];
 input_signals = [ch_FLU'; ch_FRD'; ch_BLD'; ch_BRU']; % [4 x N] una riga per ogni canale
 ch_native = (T_encode * input_signals).';  % [N x 4] una colonna per W una colonna per X ecc..
+augmenting_gain = 1.5;
+diminishing_gain = 0.5;
+ch_native(:, 1) = ch_native(:, 1) * diminishing_gain;    % W
+ch_native(:, 2) = ch_native(:, 2) * augmenting_gain;    % X
+ch_native(:, 3) = ch_native(:, 3) * augmenting_gain;    % Y
+ch_native(:, 4) = ch_native(:, 4) * augmenting_gain;    % Z
+
 
 %% === Calcolo delle coordinate normalizzate dei loudspeaker ===
 % Calcolo centro dei marker
@@ -79,6 +86,11 @@ end
 outputFolder = 'C:\Users\ACE71542GR175\Desktop\Musica digitale\playback_template_for_ambisonic_project Project';
 if ~exist(outputFolder, 'dir')
     mkdir(outputFolder);
+else
+    % Elimina file .txt, .wav e .wav.asd nella cartella
+    delete(fullfile(outputFolder, '*.txt'));
+    delete(fullfile(outputFolder, '*.wav'));
+    delete(fullfile(outputFolder, '*.wav.asd'));
 end
 
 for i = 1:4

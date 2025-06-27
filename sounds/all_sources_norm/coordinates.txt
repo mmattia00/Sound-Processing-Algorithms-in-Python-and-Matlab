@@ -1,0 +1,3 @@
+// z axis already inverted
+source position: 0.8870, 1.3893, 0.0786
+mic position: -0.0693, 1.4236, -0.0113
