@@ -3,7 +3,7 @@ close all
 clc
 
 % === Load mono audio channels ===
-basePath = "sounds/phone_ringing_test_3";
+basePath = "sounds/first_experiment/phone_ringing_test_1";
 [ch_1, ~] = audioread(fullfile(basePath, "FLU.wav"));
 [ch_2, ~] = audioread(fullfile(basePath, "FRD.wav"));
 [ch_3, ~] = audioread(fullfile(basePath, "BLD.wav"));
@@ -11,9 +11,9 @@ basePath = "sounds/phone_ringing_test_3";
 
 % === Define source and microphone positions (example test case) ===
 % Source coordinates in tracking reference frame
-% sourcePos = [-2.114, 1.454, 0.538]; %test 1: back-left 
+sourcePos = [-2.114, 1.454, 0.538]; %test 1: back-left 
 % sourcePos = [-0.123, 1.528, 0.478]; %test 2: front-left
-sourcePos = [-0.195, 1.523, -1.523]; %test 3: front-right
+% sourcePos = [-0.195, 1.523, -1.523]; %test 3: front-right
 % sourcePos = [-2.159, 1.447, -1.415]; %test 4: back-right
 % sourcePos = [-0.136, 1.525, -0.526]; %test 5: front
 % sourcePos = [-1.174, 1.4801, -1.496]; %test 6: right
