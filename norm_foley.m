@@ -2,6 +2,9 @@ clearvars
 close all
 clc
 
+% adding the subfolder with all the functions to the path
+addpath(fullfile(pwd, 'utils'));
+
 % Folder containing original Foley sounds
 inputFolder = 'sounds/second_experiment/cropped_foley/';
 outputFolder = 'sounds/second_experiment/cropped_normalized_foley/';

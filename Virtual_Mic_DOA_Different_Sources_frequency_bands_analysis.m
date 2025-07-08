@@ -3,6 +3,9 @@ clearvars    % Clear all variables from the workspace
 close all    % Close all figure windows
 clc          % Clear the command window
 
+% adding the subfolder with all the functions to the path
+addpath(fullfile(pwd, 'utils'));
+
 % === Define source and microphone positions in the OptiTrack tracking space ===
 sourcePos = [1.1994, 1.3936, -0.0016];  % Physical 3D coordinates of the sound source (assumed in front of the mic)
 micPos = [-0.1045, 1.4151, -0.0099];    % Physical 3D coordinates of the microphone

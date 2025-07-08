@@ -2,6 +2,9 @@ clearvars
 close all
 clc
 
+% adding the subfolder with all the functions to the path
+addpath(fullfile(pwd, 'utils'));
+
 % === Load mono audio channels ===
 basePath = "sounds/first_experiment/phone_ringing_test_1";
 [ch_1, ~] = audioread(fullfile(basePath, "FLU.wav"));

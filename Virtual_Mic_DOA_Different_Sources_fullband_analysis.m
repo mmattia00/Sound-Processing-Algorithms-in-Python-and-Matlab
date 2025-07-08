@@ -2,6 +2,9 @@ clearvars
 close all
 clc
 
+% adding the subfolder with all the functions to the path
+addpath(fullfile(pwd, 'utils'));
+
 %% === 1. Define Source and Microphone Positions ===
 source_pos = [1.1994, 1.3936, -0.0016];   % Position of sound source
 mic_pos    = [-0.1045, 1.4151, -0.0099];  % Microphone position in tracking system

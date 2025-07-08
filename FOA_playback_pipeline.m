@@ -2,6 +2,9 @@ clearvars  % Remove all variables from the workspace
 close all  % Close all figure windows
 clc        % Clear the command window
 
+% adding the subfolder with all the functions to the path
+addpath(fullfile(pwd, 'utils'));
+
 %% === Configuration Parameters ===
 test_number = 1;  % Index to select the test (used to choose audio and label)
 test_string_positions = ["back-left", "front-left", "front-right", "back-right", "front", "right"];
